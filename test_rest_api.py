@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-mongo_uri = os.getenv("MONGO_URL")
+mongo_url = os.getenv("MONGO_URL")
 # mongo_url = "mongodb://mongo:CoujcuIauUPtOwJjPZybLvVCbQFGbtVA@crossover.proxy.rlwy.net:31947"
 mongo_database = os.getenv("MONGO_DATABASE")
 # mongo_database = "test"
