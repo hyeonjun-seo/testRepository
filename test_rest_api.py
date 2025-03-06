@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-mongo_uri = os.getenv("MONGO_URI")
+mongo_uri = os.getenv("MONGO_URL")
 mongo_database = os.getenv("MONGO_DATABASE")
 mongo_collection = os.getenv("MONGO_COLLECTION")
 
