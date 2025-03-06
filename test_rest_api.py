@@ -17,7 +17,7 @@ mongo_collection = os.getenv("MONGO_COLLECTION")
 # mongo_collection = "alarm"
 
 mongo_full_url = str(mongo_url) + "/" + str(mongo_database) + "?authSource=admin"
-print("mongo_full_url:", mongo_full_url)
+print("connection uri:", mongo_full_url)
 
 client = MongoClient(mongo_full_url)
 

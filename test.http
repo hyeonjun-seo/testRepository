@@ -1,5 +1,5 @@
-# @host = https://testrepository-production-4a8d.up.railway.app
-@host = http://localhost:12345
+@host = https://testrepository-production-4a8d.up.railway.app
+# @host = http://localhost:12345
 
 ###
 GET {{host}}/test
