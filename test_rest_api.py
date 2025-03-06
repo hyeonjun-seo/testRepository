@@ -40,6 +40,11 @@ def handle_error(ex):
     print("Exception type:", type(ex).__name__)
     return jsonify({"error": str(ex.description)}), ex.code
 
+@app.route("/test", methods=['GET'])
+def get():
+    response = list(g.collection.find({}, {"_id": 0}))
+    return jsonify(response)
+    
 @app.route("/reportAssign/recvAlarm", methods=['POST'])
 def recvAlarm():
     response = g.collection.insert_one(request.get_json())
