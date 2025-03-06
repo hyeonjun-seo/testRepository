@@ -56,13 +56,15 @@ def get():
     
 @app.route("/reportAssign/recvAlarm", methods=['POST'])
 def recvAlarm():
-    response = g.collection.insert_one(request.get_json())
+    result = g.collection.insert_one(request.get_json())
+    response = {"inserted_id": str(result.inserted_id)}
     return jsonify(response), HTTPStatus.CREATED
 
 @app.route("/reportAssign/recvTransferState", methods=['POST'])
 def recvTransferState():
-    response = g.collection.insert_one(request.get_json())
+    result = g.collection.insert_one(request.get_json())
+    response = {"inserted_id": str(result.inserted_id)}
     return jsonify(response), HTTPStatus.CREATED
 
 if __name__ == "__main__":
-    app.run(debug=True, port=int(os.getenv("PORT", 5000)))
+    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
