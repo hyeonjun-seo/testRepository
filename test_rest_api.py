@@ -7,15 +7,18 @@ import os
 app = Flask(__name__)
 
 mongo_uri = os.getenv("MONGO_URI")
+mongo_database = os.getenv("MONGO_DATABASE")
+mongo_collection = os.getenv("MONGO_COLLECTION")
+
 client = MongoClient(mongo_uri)
 
 def get_db():
     if 'db' not in g:
-        g.db = client["test"]
+        g.db = client[mongo_database]
     return g.db
 
 def get_collection():
-    return get_db()["alarm"]
+    return get_db()[mongo_collection]
 
 # @app.before_request
 def open_connection():
@@ -48,4 +51,4 @@ def recvTransferState():
     return jsonify(response), HTTPStatus.CREATED
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=40102)
+    app.run(debug=True, host='0.0.0.0', port=12345)
