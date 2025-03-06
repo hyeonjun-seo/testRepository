@@ -15,11 +15,11 @@ client = MongoClient(mongo_uri)
 
 def get_db():
     if 'db' not in g:
-        g.db = client[mongo_database]
+        g.db = client[str(mongo_database)]
     return g.db
 
 def get_collection():
-    return get_db()[mongo_collection]
+    return get_db()[str(mongo_collection)]
 
 @app.before_request
 def open_connection():
