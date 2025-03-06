@@ -13,7 +13,7 @@ mongo_database = os.getenv("MONGO_DATABASE")
 mongo_collection = os.getenv("MONGO_COLLECTION")
 # mongo_collection = "alarm"
 mongo_full_url = str(mongo_url) + "/" + str(mongo_database) + "?authSource=admin"
-# print("mongo_full_url:", mongo_full_url)
+print("mongo_full_url:", mongo_full_url)
 
 client = MongoClient(mongo_full_url)
 # client = MongoClient(f"mongodb://mongo:CoujcuIauUPtOwJjPZybLvVCbQFGbtVA@crossover.proxy.rlwy.net:31947/test?authSource=admin")
