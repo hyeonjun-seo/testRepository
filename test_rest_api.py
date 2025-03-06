@@ -6,11 +6,11 @@ import os
 
 app = Flask(__name__)
 
-mongo_url = os.getenv("MONGO_URL")
+mongo_url = "${{MONGO_URL}}"
 # mongo_url = "mongodb://mongo:CoujcuIauUPtOwJjPZybLvVCbQFGbtVA@crossover.proxy.rlwy.net:31947"
-mongo_database = os.getenv("MONGO_DATABASE")
+mongo_database = "${{MONGO_DATABASE}}"
 # mongo_database = "test"
-mongo_collection = os.getenv("MONGO_COLLECTION")
+mongo_collection = "${{MONGO_COLLECTION}}"
 # mongo_collection = "alarm"
 mongo_full_url = str(mongo_url) + "/" + str(mongo_database) + "?authSource=admin"
 print("mongo_full_url:", mongo_full_url)
