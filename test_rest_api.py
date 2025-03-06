@@ -6,11 +6,12 @@ import os
 
 app = Flask(__name__)
 
-mongo_uri = os.getenv("MONGO_URL")
+mongo_uri = str(os.getenv("MONGO_URL")).join("?authSource=admin")
 mongo_database = os.getenv("MONGO_DATABASE")
 mongo_collection = os.getenv("MONGO_COLLECTION")
 
 client = MongoClient(mongo_uri)
+# client = MongoClient(f"mongodb://mongo:CoujcuIauUPtOwJjPZybLvVCbQFGbtVA@crossover.proxy.rlwy.net:31947/test?authSource=admin")
 
 def get_db():
     if 'db' not in g:
@@ -20,12 +21,12 @@ def get_db():
 def get_collection():
     return get_db()[mongo_collection]
 
-# @app.before_request
+@app.before_request
 def open_connection():
     g.db = get_db()
     g.collection = get_collection()
-
-# @app.teardown_appcontext
+    
+@app.teardown_appcontext
 def close_connection(exception):
     g.pop('db', None)
     g.pop('collection', None)
