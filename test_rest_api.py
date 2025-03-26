@@ -6,20 +6,33 @@ import os
 
 app = Flask(__name__)
 
-# deploy
-mongo_url = os.getenv("MONGO_URL")
-mongo_database = os.getenv("MONGO_DATABASE")
-mongo_collection = os.getenv("MONGO_COLLECTION")
+## deploy - MongoDB in Railway
+# mongo_url = os.getenv("MONGO_URL")
+# mongo_database = os.getenv("MONGO_DATABASE")
+# mongo_collection = os.getenv("MONGO_COLLECTION")
 
-# test
+## test - MongoDB in Railway
 # mongo_url = "mongodb://mongo:CoujcuIauUPtOwJjPZybLvVCbQFGbtVA@crossover.proxy.rlwy.net:31947"
 # mongo_database = "test"
 # mongo_collection = "alarm"
+# mongo_full_url = str(mongo_url) + "/" + str(mongo_database) + "?authSource=admin"
 
-mongo_full_url = str(mongo_url) + "/" + str(mongo_database) + "?authSource=admin"
+## test - MongoDB Atlas
+# mongo_url = "mongodb+srv://admin:admin@cluster0.vkzwtsi.mongodb.net/?appName=Cluster0" #not work
+mongo_url = "mongodb://admin:admin@ac-zmixluu-shard-00-00.vkzwtsi.mongodb.net:27017,ac-zmixluu-shard-00-01.vkzwtsi.mongodb.net:27017,ac-zmixluu-shard-00-02.vkzwtsi.mongodb.net:27017/?replicaSet=atlas-ky5u3w-shard-0&ssl=true&authSource=admin&retryWrites=true&w=majority&appName=Cluster0"
+mongo_database = "test"
+mongo_collection = "alarm"
+mongo_full_url = str(mongo_url) + "/" + str(mongo_database)
+
 print("connection uri:", mongo_full_url)
 
-client = MongoClient(mongo_full_url)
+try:
+    client = MongoClient(mongo_full_url)
+    client.admin.command('ping')
+
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 
 def get_db():
     if 'db' not in g:
@@ -67,4 +80,4 @@ def recvTransferState():
     return jsonify(response), HTTPStatus.CREATED
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 12345)))
