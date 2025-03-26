@@ -1,5 +1,6 @@
 # @host = https://testrepository-production-b8c3.up.railway.app
-@host = http://localhost:12345
+@host = https://testrepository-69p3.onrender.com
+# @host = http://localhost:12345
 
 ###
 GET {{host}}/test
