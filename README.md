@@ -1,1 +1,1 @@
-# A Flask REST API with MongoDB hosted by Railway
+# A Flask REST API with MongoDB hosted by Atlas or Railway
