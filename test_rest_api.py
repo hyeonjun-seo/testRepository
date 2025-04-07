@@ -64,8 +64,15 @@ def handle_error(ex):
 
 @app.route("/test", methods=['GET'])
 def get():
-    response = list(g.collection.find({}, {"_id": 0}))
-    return jsonify(response)
+    page = int(request.args.get("page", 1))
+    size = int(request.args.get("size", 10))
+
+    response = list(g.collection.find({}, {"_id": 0}).skip((page - 1) * size).limit(size))
+    return jsonify({
+        "page": page,
+        "size": size,
+        "data": response
+    })
     
 @app.route("/reportAssign/recvAlarm", methods=['POST'])
 def recvAlarm():
