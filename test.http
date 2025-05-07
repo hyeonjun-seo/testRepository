@@ -1,6 +1,9 @@
+# { $and: [ { result: { $ne: "Dummy" } }, { _id: { $gte: ObjectId('67ff39500000000000000000') } } ] }
+
+
 # @host = https://testrepository-production-b8c3.up.railway.app
 @host = https://testrepository-69p3.onrender.com
 # @host = http://localhost:12345
 
 ###
-GET {{host}}/test
+GET {{host}}/test?page=10&size=10
